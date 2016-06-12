@@ -1,0 +1,5 @@
+---
+- hosts: jenkins
+  become: yes
+  roles:
+    - flyapen.jenkins

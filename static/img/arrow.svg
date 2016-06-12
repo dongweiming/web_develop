@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1179px" height="800px" viewBox="0 0 1179 800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Web - 1280x800</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page 1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Web - 1280x800" stroke="#FFFFFF" stroke-width="23">
+            <g id="Group" transform="translate(18.000000, 15.000000)">
+                <path d="M1036,0 L1139,0 L1139,103" id="Shape"></path>
+                <path d="M1140,666 L1140,769 L1037,769" id="Shape"></path>
+                <path d="M104,769 L1,769 L1,666" id="Shape"></path>
+                <path d="M0,103 L0,0 L103,0" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

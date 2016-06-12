@@ -1,0 +1,31 @@
+<!doctype html>
+<title>CSV Data</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}">
+<style>
+        table.dataframe, .dataframe th, .dataframe td {
+            border: none;
+            border-bottom: 1px solid #C8C8C8;
+            border-collapse: collapse;
+            text-align:center;
+            padding: 10px;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+        }
+        .frame th {
+            background-color: #00ccff;
+            color: white;
+        }
+        tr:nth-child(odd) {
+            background-color:#eee;
+        }
+        tr:nth-child(even){
+            background-color:#fff;
+        }
+        tr:hover {
+            background-color: #aaa;
+        }
+</style>
+<div class="page">
+    <h1>时间：{{ date_string }} </h1>
+        {{ df|safe }}
+</div>

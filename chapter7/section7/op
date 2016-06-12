@@ -1,0 +1,63 @@
+#!/usr/bin/expect
+trap {
+    set rows [stty rows]
+    set cols [stty columns]
+    stty rows $rows columns $cols < $spawn_out(slave,name)
+} WINCH
+
+set timeout 5
+# `$argv`就是传递的参数, 0表示第一个参数， 依此类推
+set server [lindex $argv 0]
+set id [lindex $argv 1]
+set mydict [
+            dict create \
+                dev1pass DEV1PASSWORD \
+                dev2pass DEV2PASSWORD \
+                dev3pass DEV3PASSWORD \
+                jumpserverpass JUMPPASSWORD
+           ]
+
+
+if {[llength $argv] == 0} {
+    puts stderr "参数错误, 请使用以下格式: $argv0 {服务器简称} {切换的用户}"
+    exit 1
+}
+
+if {[regexp {^s} $server found]} {  # # 如果输入的服务器名字以s开头
+    spawn ssh -p 54010 123.126.11.23  # 123.126.11.23是跳板机IP, ssh端口为54010
+    expect "password:"  # expect关键词表示期待出现`password:`
+    send "$jumpserverpass\n"  # `password:`出现后就发送跳板机的密码， 并回车
+    expect "~"  # 期待出现`~`
+    send "ssh $server\n"
+    expect "password:"
+    send "xxx\n"  # xxx表示密码， 可以使用通用密码， 也可以继续扩充mydict
+    interact  # interact打开用户和远程服务器的通信， 现在用户就可以在$server上执行操作了
+} elseif {$server=="vps"} {
+    spawn ssh dongwm@139.162.2.10  # vps服务器的IP
+    expect "Password:"
+    send "xxx\n"  # xxx就是vps的登录密码
+    interact
+} elseif {[regexp {^mta} $server found]} {  # 如果输入的服务器名字以mta开头
+    spawn ssh -p 58204 180.180.20.23  # 另外一个机房的IP, ssh端口为58204
+    expect "password:"
+    send "$jumpserverpass\n"
+    expect "~"
+    send "ssh operation@$server\n"
+    expect "password:"
+    send "xxx\n"
+    expect "~"
+    send "source some_env/bin/activate\n"  # 登录到服务器后自动执行了这2句命令
+    send "cd new_path\n"
+    interact
+} else {  # 不符合上述的条件
+    spawn ssh -p 22 $server
+    expect -re "\[pP\]assword:"
+    send "[dict get $mydict  ${server}pass]\n"
+    if {[llength $id] != 0} {
+        expect "~"
+        send "sudo -u ${id} -s\n"  # 如果传递了第二个参数
+        expect "Password:"
+        send "[dict get $mydict  ${server}pass]\n"
+    }
+    interact
+}

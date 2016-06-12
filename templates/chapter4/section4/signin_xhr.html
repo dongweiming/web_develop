@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signin</title>
+        <script src="{{ url_for('static', filename='javascripts/jquery.min.js') }}"></script>
+        <style>
+            #result {
+                margin-top: 20px;
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <form action="/signin" method="post" role="form">
+                <h2>Please Sign In</h2>
+                <input type="name" name="username" placeholder="Username" required autofocus>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button class="btn" type="button">SignIn</button>
+            </form>
+
+            <div id="result"></div>
+        </div>
+
+        <script type='text/javascript'>
+            $(function() {
+                $('.btn').click(function() {
+                    var $result = $('#result');
+                    var $username = $('input[name="username"]').val();
+                    var $password = $('input[name="password"]').val();
+                    var data = new FormData();
+                    data.append('username', $username);
+                    data.append('password', $password);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/signin');
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var data = JSON.parse(xhr.responseText);
+                            if (!data.r) {
+                                $result.html(data.rs);
+                            } else {
+                                $result.html(data.error);
+                            }
+                        };
+                    };
+
+                    xhr.send(data);
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+---
+- include: repo.yml
+
+- include: dependencies_deb.yml
+
+- name: Install Jenkins
+  apt: name=jenkins state=latest
+  register: jenkins_install
+
+- include: config.yml
+
+- include: cli.yml
+
+- include: plugins.yml
+
+- include: config.yml

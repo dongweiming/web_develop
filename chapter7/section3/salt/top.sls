@@ -1,0 +1,3 @@
+dev:
+  'web*':
+    - redis

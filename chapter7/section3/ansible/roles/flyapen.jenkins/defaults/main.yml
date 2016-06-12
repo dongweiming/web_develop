@@ -1,0 +1,9 @@
+---
+placeholder: 'placeholder'
+port: 8080
+# plugins:
+#   - 'ldap'
+#   - 'github'
+#   - 'translation'
+#   - 'preSCMbuildstep'
+#   - 'gravatar'

@@ -1,0 +1,86 @@
+.guide p {
+    line-height: 14px;
+    margin-top: 3px;
+}
+
+.alert {
+    margin-bottom: 0;
+}
+
+.alert-error {
+    color: red;
+}
+
+div.output_area pre {
+    color: green;
+}
+
+.widget-hlabel {
+    min-width: 12ex;
+}
+
+.widget-hbox-single {
+    width: 300px;
+}
+
+.board {
+    width: 725px;
+    display: block;
+}
+
+.board > .widget-box {
+    height: 180px;
+    margin-bottom: 0;
+    overflow: hidden;
+    width: 360px;
+    border: 1px solid #999;
+    padding-top: 20px;
+}
+
+.board > .widget-box:first-child {
+    float: left;
+    height: 360px;
+    width: 360px;
+    border-right: 0;
+}
+
+.board > .widget-box:nth-child(3) {
+    border-top: 0;
+}
+
+.doulist .widget-box .widget-hbox:first-child {
+    border: 0;
+}
+
+.doulist > .widget-box {
+    display: block;
+    width: 440px;
+}
+
+.doulist > .widget-box > *:first-child {
+    height: 30px;
+    width: 300px;
+    float: unset;
+    border: unset;
+    padding-top: 0;
+}
+
+.doulist > .widget-box > *:nth-child(2) {
+    height: 200px;
+    width: 200px;
+    padding-top: 85px;
+}
+
+.doulist > .widget-box > * {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    height: 95px;
+    width: 95px;
+    padding-top: 30px;
+}
+
+.widget-hbox .widget-label {
+    width: 116px;
+}

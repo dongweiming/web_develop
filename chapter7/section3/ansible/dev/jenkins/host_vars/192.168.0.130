@@ -1,0 +1,10 @@
+---
+plugins:
+  - 'ldap'
+  - 'github'
+port: 8081
+prefix: '/build'
+email:
+  smtp_host: 'mail.dongwm.com'
+  smtp_ssl: 'true'
+  default_email_suffix: '@dongwm.com'

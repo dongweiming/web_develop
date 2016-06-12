@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Simple Page</title>
+    </head>
+    <body>
+        {# This is a Comment #}
+        <ul id="navigation">
+            {% for item in items %}
+                <li><a href="{{ item.href }}">{{ item['caption'] }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h1>{{ title | trim }}</h1>
+        <p>{{ content }}</p>
+
+    </body>
+</html>

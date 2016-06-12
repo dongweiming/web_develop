@@ -1,0 +1,27 @@
+{% macro render_field(field) %}
+    <div class="form-group">
+        <div class="form-label">{{ field.label }}</div>
+        <div class="form-body">
+            {{ field(**kwargs)|safe }}
+        </div>
+
+        {% if field.errors %}
+        <ul class="warning">
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+<form method=post action='/register'>
+    {{ form.csrf_token }}
+    <dl>
+        {{ render_field(form.name) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+    </dl>
+    <p><input type=submit value=Register>
+</form>

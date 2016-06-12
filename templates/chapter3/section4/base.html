@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <%block name="head">
+            <link rel="stylesheet" href="style.css" />
+            <title>${ title() } - My Webpage</title>
+        </%block>
+    </head>
+    <body>
+        <div id="content">
+            <%block name="content"/>
+        </div>
+        <div id="footer">
+            <%block name="footer"/>
+        </div>
+    </body>
+</html>
+
+<%def name="title()">
+</%def>

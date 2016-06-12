@@ -1,0 +1,50 @@
+---
+redis_settings:
+  appendfilename: appendonly.aof
+  appendonly: 'no'  # no和yes需要使用字符串，否则会被当成True/False
+  appendfsync: everysec
+  auto_aof_rewrite_min_size: 64mb
+  auto_aof_rewrite_percentage: 100
+  aof_load_truncated: 'yes'
+  bin: /usr/local/bin/redis-server
+  bind: 127.0.0.1
+  database_count: 16
+  pidfile: /var/run/redis/redis-server.pid
+  logfile: /var/log/redis/redis-server.log
+  root_dir: /var/lib/redis
+  dbfilename: dump.rdb
+  daemonize: 'yes'
+  group: redis
+  home: /var/lib/redis
+  install_from: package
+  latency_monitor_threshold: 0
+  loglevel: notice
+  lua_time_limit: 5000
+  maxmemory_policy: volatile-lru
+  maxmemory_samples: 3
+  notify_keyspace_events: ''
+  no_appendfsync_on_rewrite: 'no'
+  port: 6379
+  rdbchecksum: 'yes'
+  rdbcompression: 'yes'
+  repl_disable_tcp_nodelay: 'no'
+  slave_priority: 100
+  slave_read_only: 'yes'
+  repl_diskless_sync: 'no'
+  repl_diskless_sync_delay: 5
+  slave_serve_stale_data: 'yes'
+  slowlog_max_len: 128
+  slowlog_log_slower_than: 10000
+  snapshots: [
+      900 1,
+      300 10,
+      60 10000,
+      ]
+  stop_writes_on_bgsave_error: 'yes'
+  svc_onboot: True
+  svc_state: running
+  timeout: 0
+  tcp_backlog: 511
+  tcp_keepalive: 0
+  unixsocketperm: 755
+  user: redis

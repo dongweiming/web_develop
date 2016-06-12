@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Index page</title>
+        <script type="text/javascript" src="{{ url_for('static', filename='javascripts/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="//cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                namespace = '/task';
+                socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+                socket.on('my response', function(msg) {
+                    console.log('Received: ' + msg.data);
+                    $('#log').append('Received: ' + msg.data + '<br>');
+                });
+                $('#background').on('click', function() {
+                    $.get("{{ url_for('start_background_task') }}");
+                });
+            });
+        </script>
+        <style>
+            h3 {
+                margin-bottom: 30px;
+            }
+            p#log {
+                border: 1px solid red;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Logging</h3>
+        <p id="log"></p>
+        <button id="background">Execute</button>
+    </body>
+</html>

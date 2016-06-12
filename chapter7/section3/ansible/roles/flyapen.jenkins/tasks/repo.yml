@@ -1,0 +1,12 @@
+---
+- name: Install python-software-properties
+  apt: name=python-software-properties state=installed update_cache=yes cache_valid_time=86400
+
+- name: Install python-pycurl
+  apt: name=python-pycurl state=installed
+
+- name: Add jenkins apt-key
+  apt_key: data="{{ lookup('file', 'jenkins-ci.org.key') }}" state=present
+
+- name: Add Jenkins repository
+  apt_repository: repo='{{ jenkins.deb.repo }}' state=present update_cache=yes

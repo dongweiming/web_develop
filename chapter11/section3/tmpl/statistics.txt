@@ -1,0 +1,16 @@
+<style>
+    <%include file="bootstrap.min.css"/>
+</style>
+<table class="table table-bordered table-hover">
+    <tr>
+    % for column in row:
+      <th>${column}</th>
+    % endfor
+    % for index, rows in enumerate(rows_data):
+        <tr>
+        % for column in [row_headers[index]] + rows:
+            <td>${column}</td>
+        % endfor
+        </tr>
+    % endfor
+</table>

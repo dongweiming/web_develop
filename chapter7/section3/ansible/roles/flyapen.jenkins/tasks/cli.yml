@@ -1,0 +1,25 @@
+---
+# Handle plugins
+- name: "{{ startup_delay_s | default(10) }}s delay while starting Jenkins"
+  wait_for: host=localhost port={{ port }} delay={{ startup_delay_s | default(10) }}
+  when: jenkins_install.changed or config_changed.changed
+
+- name: "Create Jenkins CLI destination directory: {{ jenkins_dest }}"
+  file: path={{ jenkins_dest }} state=directory
+
+- name: Get Jenkins CLI
+  get_url: url=http://localhost:{{ port }}/jnlpJars/jenkins-cli.jar dest={{ jenkins.cli_dest }} mode=0440
+  register: jenkins_local_cli
+  until: "'OK' in jenkins_local_cli.msg or 'file already exists' in jenkins_local_cli.msg"
+  retries: 5
+  delay: 10
+
+- name: Get Jenkins updates
+  get_url: url=https://updates.jenkins-ci.org/update-center.json dest={{ jenkins.updates_dest }} thirsty=yes mode=0440 timeout=30
+  register: jenkins_updates
+
+- name: Update-center Jenkins
+  shell: "cat {{ jenkins.updates_dest }} | sed '1d;$d' | curl -X POST -H 'Accept: application/json' -d @- http://localhost:{{ port }}/updateCenter/byId/default/postBack"
+  when: jenkins_updates.changed
+  notify:
+    - 'Restart Jenkins'

@@ -1,0 +1,172 @@
+# Redis config
+{% from "redis/map.jinja" import redis_settings with context %}
+daemonize {{ redis_settings.daemonize }}
+
+pidfile {{ redis_settings.pidfile }}
+port {{ redis_settings.port }}
+
+{% if redis_settings.bind is defined %}
+bind {{ redis_settings.bind }}
+{% endif -%}
+
+{% if redis_settings.unixsocket is defined %}
+unixsocket {{ redis_settings.unixsocket }}
+unixsocketperm {{ redis_settings.unixsocketperm }}
+{% endif -%}
+
+{% if redis_settings.timeout is defined %}
+timeout {{ redis_settings.timeout }}
+{% endif -%}
+
+{% if redis_settings.tcp_backlog is defined and redis_settings.tcp_backlog > 0 %}
+tcp-backlog {{ redis_settings.tcp_backlog }}
+{% endif -%}
+tcp-keepalive {{ redis_settings.tcp_keepalive }}
+
+loglevel {{ redis_settings.loglevel }}
+
+{% if redis_settings.syslog is defined %}
+syslog-enabled yes
+syslog-ident {{ redis_settings.syslog.ident }}
+syslog-facility {{ redis_settings.syslog.facility }}
+{% if redis_settings.syslog.nologfile is defined %}
+logfile ""
+{% else %}
+logfile {{ redis_settings.logfile }}
+{% endif -%}
+{% else %}
+logfile {{ redis_settings.logfile }}
+{% endif -%}
+
+databases {{ redis_settings.database_count }}
+
+{% for s in redis_settings.snapshots -%}
+save {{ s }}
+{% endfor %}
+
+stop-writes-on-bgsave-error {{ redis_settings.stop_writes_on_bgsave_error }}
+
+rdbcompression {{ redis_settings.rdbcompression }}
+rdbchecksum {{ redis_settings.rdbchecksum }}
+
+dbfilename {{ redis_settings.dbfilename }}
+dir {{ redis_settings.root_dir }}
+
+{% if redis_settings.slaveof is defined %}
+slaveof {{ redis_settings.slaveof.masterip }} {{ redis_settings.slaveof.masterport }}
+{% endif -%}
+
+{% if redis_settings.masterauth is defined %}
+masterauth {{ redis_settings.masterauth }}
+{% endif -%}
+
+slave-serve-stale-data {{ redis_settings.slave_serve_stale_data }}
+slave-read-only {{ redis_settings.slave_read_only }}
+
+{% if redis_settings.repl_diskless_sync is defined %}
+repl-diskless-sync {{ redis_settings.repl_diskless_sync}}
+repl-diskless-sync-delay {{ redis_settings.repl_diskless_sync_delay}}
+{% endif -%}
+
+{% if redis_settings.repl_ping_slave_period is defined %}
+repl-ping-slave-period {{ redis_settings.repl_ping_slave_period }}
+{% endif -%}
+
+{% if redis_settings.repl_timeout is defined %}
+repl-timeout {{ redis_settings.repl_timeout }}
+{% endif -%}
+
+repl-disable-tcp-nodelay {{ redis_settings.repl_disable_tcp_nodelay }}
+
+{% if redis_settings.repl_backlog_size is defined %}
+repl-backlog-size {{ redis_settings.repl_backlog_size }}
+{% endif -%}
+
+{% if redis_settings.repl_backlog_ttl is defined %}
+repl-backlog-ttl {{ redis_settings.repl_backlog_ttl }}
+{% endif -%}
+
+slave-priority {{ redis_settings.slave_priority }}
+
+{% if redis_settings.min_slaves_to_write is defined %}
+min-slaves-to-write {{ redis_settings.min_slaves_to_write }}
+{% endif -%}
+
+{% if redis_settings.min_slaves_max_lag is defined %}
+min-slaves-max-lag {{ redis_settings.min_slaves_max_lag }}
+{% endif -%}
+
+{% if redis_settings.pass is defined %}
+requirepass {{ redis_settings.pass }}
+{% endif -%}
+
+{% if redis_settings.rename_command is defined %}
+{% for k, v in redis_settings.rename_command %}
+rename-command {{ k }} {{ v }}
+{% endfor %}
+{% endif -%}
+
+{% if redis_settings.maxclients is defined %}
+maxclients {{ redis_settings.maxclients }}
+{% endif -%}
+
+{% if redis_settings.maxmemory is defined %}
+maxmemory {{ redis_settings.maxmemory }}
+maxmemory-policy {{ redis_settings.maxmemory_policy }}
+maxmemory-samples {{ redis_settings.maxmemory_samples }}
+{% endif %}
+
+appendonly {{ redis_settings.appendonly }}
+appendfilename {{ redis_settings.appendfilename }}
+appendfsync {{ redis_settings.appendfsync }}
+
+no-appendfsync-on-rewrite {{ redis_settings.no_appendfsync_on_rewrite }}
+
+auto-aof-rewrite-percentage {{ redis_settings.auto_aof_rewrite_percentage }}
+auto-aof-rewrite-min-size {{ redis_settings.auto_aof_rewrite_min_size }}
+
+aof-load-truncated {{ redis_settings.aof_load_truncated }}
+
+
+lua-time-limit {{ redis_settings.lua_time_limit }}
+
+{% if redis_settings.cluster_enabled is defined %}
+cluster-enabled {{ redis_settings.cluster_enabled}}
+cluster-config-file {{ redis_settings.cluster_config_file}}
+cluster-node-timeout {{ redis_settings.cluster_node_timeout}}
+cluster-slave-validity-factor {{ redis_settings.cluster_slave_validity_factor}}
+cluster-migration-barrier {{ redis_settings.cluster_migration_barrier}}
+cluster-require-full-coverage {{ redis_settings.cluster_require_full_coverage}}
+{% endif %}
+
+slowlog-log-slower-than {{ redis_settings.slowlog_log_slower_than }}
+slowlog-max-len {{ redis_settings.slowlog_max_len }}
+
+latency-monitor-threshold {{ redis_settings.latency_monitor_threshold }}
+
+notify-keyspace-events {{ redis_settings.notify_keyspace_events }}
+
+############################### ADVANCED CONFIG ###############################
+
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+
+list-max-ziplist-entries 512
+list-max-ziplist-value 64
+
+set-max-intset-entries 512
+
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+
+hll-sparse-max-bytes 3000
+
+activerehashing yes
+
+client-output-buffer-limit normal 0 0 0
+client-output-buffer-limit slave 256mb 64mb 60
+client-output-buffer-limit pubsub 32mb 8mb 60
+
+hz 10
+
+aof-rewrite-incremental-fsync yes

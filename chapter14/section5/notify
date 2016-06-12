@@ -1,0 +1,30 @@
+#!/usr/bin/python
+# coding=utf-8
+import sys
+import subprocess
+
+
+def notify(title, msg, is_error=False):
+    cmd = ('ssh dongweiming@192.168.1.49 '
+           '"python /Users/dongweiming/bin/notify.py '
+           '-t \'{}\' -m \'{}\'"').format(title, msg)
+    if is_error:
+        cmd += ' --error'
+    subprocess.call(cmd, shell=True)
+
+
+def main():
+    cmd = ' '.join(sys.argv[1:])
+    retcode = subprocess.call(cmd, shell=True)
+    if len(cmd) > 33:
+        cmd = cmd[:30] + '...'
+    if retcode:
+        title = '执行失败'
+        is_error = True
+    else:
+        title = '执行成功'
+        is_error = False
+    notify(title, cmd, is_error=is_error)
+
+if __name__ == '__main__':
+    main()

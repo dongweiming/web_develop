@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> R - ${p.filehash}</title>
+        <meta content="${p.url_i}" name="url_i"/>
+        <meta content="${p.url_s}" name="url_s"/>
+        <meta content="${p.quoteurl}" name="quoteurl"/>
+        <meta content="${p.type}" name="image_type"/>
+        <link rel="stylesheet" href="/static/stylesheets/index.css" />
+        <script src="/static/javascripts/vendors.js"></script>
+    </head>
+
+    <body>
+        % if p.type != 'image':
+            <div id="card" class="visible">
+                <div id="card-info">
+                    <div class="file-icon">
+                        <img alt="" src="/static/img/${p.type}.png"/>
+                    </div>
+                    <div class="file-meta">
+                        <h2 id="filename" class="filename">${p.filename}</h2>
+                        <span id="filesize"></span>
+                        <span class="sep"> •</span>
+                        <span id="uploadtime">${p.uploadtime} </span>
+                    </div>
+                    <div class="p-link">
+                        <input id="link_s" name="" type="text" value="${p.url_s}"/>
+                    </div>
+                    <div id="action-area">
+                        <a id="download-link" href="${p.url_d}">download</a>
+                    % if p.type == 'pdf':
+                        <a id="play-link" href="${p.url_i}">preview</a>
+                    % elif p.type != 'binary':
+                        <a id="play-link" href="${p.url_i}">play</a>
+                    % endif
+                    </div>
+                </div>
+            </div>
+        % endif
+        <div id="main"></div>
+        <script src="/static/javascripts/success.js"></script>
+    </body>
+</html>

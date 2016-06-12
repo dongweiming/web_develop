@@ -1,0 +1,64 @@
+---
+- hosts: webservers
+  remote_user: vagrant
+  become: yes
+  become_method: sudo
+  vars_files:  # 用到的变量单独存放进了YAML文件中
+    - vars.yml
+  tasks:  # 任务列表， 按顺序执行
+    - name: ensure packages installed
+      apt: pkg={{ item }} state=latest
+      with_items:
+        - make
+        - build-essential
+        - tcl8.5
+
+    - name: ensure vm.overcommit_memory equal 1
+      sysctl: name="vm.overcommit_memory" value=1 sysctl_set=yes state=present reload=yes
+
+    - name: download latest stable redis
+      get_url: url=http://download.redis.io/redis-stable.tar.gz dest=/tmp/redis-stable.tar.gz
+
+    - name: untar redis
+      unarchive: src=/tmp/redis-stable.tar.gz dest=/tmp
+
+    - name: build redis
+      command: make -C /tmp/redis-stable
+
+    - name: create redis group
+      group: name=redis state=present system=yes
+
+    - name: create redis user
+      user: name=redis group=redis createhome=no shell=/bin/false system=yes state=present
+
+    - name: make sure that /etc/redis exists
+      file: path=/etc/redis state=directory mode=0755
+
+    - name: make sure that /var/db/redis exists
+      file: path=/var/db/redis state=directory mode=0755 group=redis owner=redis
+
+    - name: copy upstart file
+      copy: src=templates/upstart.conf dest=/etc/init/redis.conf  # 放到/etc/init下就可以被系统识别, 然后就可以执行`sudo service redis start/stop`
+
+    - name: installing redis binaries
+      command: cp /tmp/redis-stable/src/{{ item }} /usr/local/bin
+      with_items:  # 这个列表会依次执行上面的命令， item就是每次的每次的文件名字
+        - redis-server
+        - redis-cli
+        - redis-check-aof
+        - redis-check-dump
+
+    - name: copy redis.conf file
+      template: src=templates/redis.conf.j2 dest=/etc/redis/redis.conf group=redis owner=redis  # Jinja2模板需要使用template这个模块
+      notify:
+        - restart redis  # 通知会触发的命令在handlers中定义
+
+    - name: cleaning up build files
+      command: rm -rf /tmp/{{ item }}
+      with_items:
+        - redis-stable
+        - redis-stable.tar.gz
+
+  handlers:  # 在发生改变时执行的操作, 被上面的事件触发
+    - name: restart redis
+      service: name=redis state=restarted
