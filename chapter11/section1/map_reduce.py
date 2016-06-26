@@ -62,7 +62,7 @@ def reducer_count(item):
 
 if __name__ == '__main__':
     input_files = glob.glob(
-        '/data/log/scribe/movie/*/*/*/*-2015-07-30_00000.bz2')
+        '/home/ubuntu/web_develop/chapter11/section1/data/*.bz2')
     mapper = MapReduce(mapper_match, reducer_match)
     cookie_feq = mapper(input_files)
     print 'Result: {}'.format(cookie_feq)

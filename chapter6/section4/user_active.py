@@ -19,7 +19,7 @@ def record_active(account_id, t=None):
     key = ACCOUNT_ACTIVE_KEY
     for arg in ('year', 'month', 'day'):
         key = '{}:{}'.format(key, getattr(t, arg))
-        r.setbit(key, account_id, 1)
+        p.setbit(key, account_id, 1)
     p.execute()
 
 

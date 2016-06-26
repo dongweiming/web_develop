@@ -42,7 +42,8 @@ class BaseRunner(object):
         filter_func_list = self.match_rules.values()
 
         def wrapper(log, *args, **kwargs):
-            return any(func(log, *args, **kwargs) for func in filter_func_list)
+            return any(func(log, *args, **kwargs)
+                       for func in filter_func_list)
 
         return wrapper
 
@@ -61,7 +62,8 @@ class BaseRunner(object):
         dpark = DparkContext()
 
         return dpark.union(
-            [dpark.textFile(path, splitSize=64 << 20) for path in self.paths]
+            [dpark.textFile(path, splitSize=64 << 20)
+             for path in self.paths]
         ).map(Weblog.from_line)
 
     def get_flat_mapped_rdd(self):

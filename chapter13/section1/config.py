@@ -6,8 +6,9 @@ PROXY_SITES = [
     'http://www.xicidaili.com',
     'http://www.kuaidaili.com/free',
     'http://www.proxylists.net/?HTTP',
-    'http://www.youdaili.net/Daili/http/4402.html',
-    'http://www.youdaili.net/Daili/http/4403.html',
+    # www.youdaili.net的地址随着日期不断更新
+    'http://www.youdaili.net/Daili/http/4565.html',
+    'http://www.youdaili.net/Daili/http/4562.html',
     'http://www.kuaidaili.com',
     'http://proxy.mimvp.com',
 ]

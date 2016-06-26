@@ -29,7 +29,7 @@ def _get_frame(date_string):
 def show_tables(date_string=None):
     df = _get_frame(date_string)
     if isinstance(df, bool) and not df:
-        return 'A bad date format!'
+        return 'Bad date format!'
     return render_template(
         'chapter11/section4/csv.html', df=df.to_html(classes='frame'),
         date_string=date_string)
@@ -40,7 +40,7 @@ def serve_csv(date_string=None, user_index=None):
     buffer = cStringIO.StringIO()
     df = _get_frame(date_string)
     if isinstance(df, bool) and not df:
-        return 'A bad date format!'
+        return 'Bad date format!'
     if user_index is not None:
         df = df.loc[user_index - 1]  # 事实上返回的是一个Series
     df.to_csv(buffer, encoding='utf-8')

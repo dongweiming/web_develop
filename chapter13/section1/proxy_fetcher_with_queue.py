@@ -97,3 +97,7 @@ def use_thread_with_queue():
         queue.put(url)
 
     queue.join()
+
+
+if __name__ == '__main__':
+    use_thread_with_queue2()
