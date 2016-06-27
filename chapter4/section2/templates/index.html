@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Index page</title>
+            {% assets "css_all" -%}
+                <link rel="stylesheet" href="{{ ASSET_URL }}">
+            {%- endassets %}
+    </head>
+    <body>
+        <button class="pure-button btn">提交</button>
+        {% assets "js_all" -%}
+            <script src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+    </body>
+    </html>
