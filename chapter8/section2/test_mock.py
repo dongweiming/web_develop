@@ -15,7 +15,7 @@ class TestClient(unittest.TestCase):
         api_result = mock.Mock(return_value=self.result)
         client.api_request = api_result
         self.assertEqual(client.get_review_author(
-            'http://review.dongwm.com/dongwm'), 'dongwm')
+            'http://api.dongwm.com/review/123'), 'dongwm')
 
 
 def test_side_effect():

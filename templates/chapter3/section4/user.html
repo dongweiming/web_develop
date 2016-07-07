@@ -1,0 +1,8 @@
+<h2>Current User: {{ current_user.name }}</h2>
+<ul>
+    {% for index, user in enumerate(users, 1) %}
+    <li>
+        {{ index }} {{ user.name | capitalize }}
+    </li>
+    {% endfor %}
+</ul>
