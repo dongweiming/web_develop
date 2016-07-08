@@ -1,6 +1,6 @@
 ---
 - hosts: webservers
-  remote_user: vagrant
+  remote_user: ubuntu
   become: yes
   become_method: sudo
   vars_files:  # 用到的变量单独存放进了YAML文件中
@@ -46,7 +46,6 @@
         - redis-server
         - redis-cli
         - redis-check-aof
-        - redis-check-dump
 
     - name: copy redis.conf file
       template: src=templates/redis.conf.j2 dest=/etc/redis/redis.conf group=redis owner=redis  # Jinja2模板需要使用template这个模块

@@ -6,18 +6,29 @@ import sys
 import atexit
 import code
 
-from traitlets.config.loader import Config
+from IPython.terminal.prompts import Prompts, Token
 
 try:
     import IPython  # noqa
     has_ipython = True
-    cfg = Config()
-    prompt_config = cfg.PromptManager
-    prompt_config.in_template = 'In <\\#>: '
-    prompt_config.in2_template = '   .\\D.: '
-    prompt_config.out_template = 'Out<\\#>: '
 except ImportError:
     has_ipython = False
+
+
+class MyPrompt(Prompts):
+    def in_prompt_tokens(self, cli=None):   # default
+        return [
+            (Token.Prompt, 'In <'),
+            (Token.PromptNum, str(self.shell.execution_count)),
+            (Token.Prompt, '>: '),
+        ]
+
+    def out_prompt_tokens(self):
+        return [
+            (Token.OutPrompt, 'Out<'),
+            (Token.OutPromptNum, str(self.shell.execution_count)),
+            (Token.OutPrompt, '>: '),
+        ]
 
 
 def hook_readline_hist():
@@ -62,14 +73,13 @@ def plain_shell(user_ns):
 
 def ipython_shell(user_ns):
     from IPython.terminal.ipapp import TerminalIPythonApp
-    #from IPython.terminal.interactiveshell import TerminalInteractiveShell
-    from IPython.terminal.ptshell import TerminalInteractiveShell
+    from IPython.terminal.interactiveshell import TerminalInteractiveShell
 
     class MyIPythonApp(TerminalIPythonApp):
 
         def init_shell(self):
-            self.shell = TerminalInteractiveShell.instance(
-                config=cfg,
+            self.shell = TerminalInteractiveShell(
+                prompts_class=MyPrompt, highlighting_style='emacs',
                 display_banner=False, profile_dir=self.profile_dir,
                 ipython_dir=self.ipython_dir, banner1=get_banner(), banner2='')
             self.shell.configurables.append(self)
