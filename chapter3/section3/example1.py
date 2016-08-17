@@ -8,7 +8,7 @@ try:
     cur.execute("SELECT VERSION()")
     ver = cur.fetchone()
     print "Database version : %s " % ver
-except MySQLdb.Error, e:
+except MySQLdb.Error as e:
     print "Error %d: %s" % (e.args[0], e.args[1])
     exit(1)
 finally:

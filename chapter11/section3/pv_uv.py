@@ -62,7 +62,7 @@ worksheet1.insert_chart('A8', chart1, {'x_offset': 25, 'y_offset': 10})
 chart2.set_title({'name': '上周活动页 UV'})
 chart2.set_x_axis({'name': 'UV'})
 chart2.set_y_axis({'name': '数量'})
-chart2.set_style(42)
+chart2.set_style(33)
 worksheet2.insert_chart('A8', chart2, {'x_offset': 25, 'y_offset': 10})
 
 workbook.close()
