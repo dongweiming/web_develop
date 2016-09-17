@@ -7,6 +7,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 5000, host: 5000
   config.ssh.username = 'ubuntu'
   config.ssh.password = 'ubuntu'
+  config.ssh.insert_key = false
+  config.ssh.private_key_path = ["~/.ssh/id_rsa"]
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   # config.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
