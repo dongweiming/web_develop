@@ -16,7 +16,7 @@ def signin():
     password = request.form['password']
     error = None
     if len(username) < 5:
-        error = 'Password must be at least 5 characters'
+        error = 'Username must be at least 5 characters'
     if len(password) < 6:
         error = 'Password must be at least 8 characters'
     elif not any(c.isupper() for c in password):

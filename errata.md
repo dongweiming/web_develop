@@ -7,6 +7,7 @@
 | --------------------- |:-------------:| --------------:|-----------:|
 | 第2章 autoenv(P24) 中间 | echo "source source /home/ubuntu..."| echo "source /home/ubuntu..."| @刘一鹤 |
 | 第3章 配置管理(P31) 尾部| app.config.from_envar('SETTINGS') | app.config.from_envar('YOURAPPLICATION_SETTINGS')| @凝霜 |
+| 第5章 使用Ajax 尾部| error = 'Password must be at least 5 ...'| error = 'Username must be at least 5 ...'| @特特特~ |
 
 ### 代码错误
 
