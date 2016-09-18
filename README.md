@@ -14,10 +14,22 @@ PS: 目前京东自营无货，推荐去亚马逊或者[京东蓝墨水图书专
 
 1. 进入虚拟机请首先更新下项目代码库：
 
+    ```
     ❯ cd web_develop
     ❯ git pull --rebase origin master
+    ```
 
 2. fork的时候可以顺便点个star😂
+3. 如果使用Vagrant启动时，提示类似如下信息：
+
+    ```
+    ==> default: A newer version of the box 'dongweiming/web_develop' is available! You currently
+    ==> default: have version '0.X'. The latest is version '0.Y'. Run
+    ==> default: `vagrant box update` to update.
+    ```
+
+    那么可以使用`vagrant box update`更新一下。
+4. 如果下载box文件很慢，可以通过[百度网盘](https://pan.baidu.com/s/1mhQmCac)下载，然后使用`vagrant box add dongweiming/web_develop virtualbox.box`初始化。
 
 ### 重要链接
 
