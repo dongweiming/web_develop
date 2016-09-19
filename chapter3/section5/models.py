@@ -2,8 +2,12 @@
 import os
 import uuid
 import magic
-import urllib
 from datetime import datetime
+
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.parse import quote
 
 import cropresize2
 import short_url
@@ -61,7 +65,7 @@ class PasteFile(db.Model):
     def create_by_upload_file(cls, uploaded_file):
         rst = cls(uploaded_file.filename, uploaded_file.mimetype, 0)
         uploaded_file.save(rst.path)
-        with open(rst.path) as f:
+        with open(rst.path, 'rb') as f:
             filemd5 = get_file_md5(f)
             uploaded_file = cls.get_by_md5(filemd5)
             if uploaded_file:
@@ -116,7 +120,7 @@ class PasteFile(db.Model):
 
     @property
     def quoteurl(self):
-        return urllib.quote(self.url_i)
+        return quote(self.url_i)
 
     @classmethod
     def rsize(cls, old_paste, weight, height):
