@@ -5,6 +5,7 @@
 
 |       章节（页码）    |      原文     |     修改为     |    出处    |
 | --------------------- |:-------------:| --------------:|-----------:|
+| 第2章 插件系统(P17) 头部 | 我们先安装pep-naming | 我们先安装pep8-naming | @tntC4stl3 |
 | 第2章 autoenv(P24) 中间 | echo "source source /home/ubuntu..."| echo "source /home/ubuntu..."| @刘一鹤 |
 | 第3章 配置管理(P31) 尾部 | app.config.from_envar('SETTINGS') | app.config.from_envar('YOURAPPLICATION_SETTINGS')| @凝霜 |
 | 第5章 使用Ajax 尾部 | error = 'Password must be at least 5 ...'| error = 'Username must be at least 5 ...'| @特特特~ |
