@@ -9,6 +9,7 @@
 | 第2章 autoenv(P24) 中间 | echo "source source /home/ubuntu..."| echo "source /home/ubuntu..."| @刘一鹤 |
 | 第3章 配置管理(P31) 尾部 | app.config.from_envar('SETTINGS') | app.config.from_envar('YOURAPPLICATION_SETTINGS')| @凝霜 |
 | 第5章 使用Ajax 尾部 | error = 'Password must be at least 5 ...'| error = 'Username must be at least 5 ...'| @特特特~ |
+| 第6章 通过Gunicorn启动Flask应用(P148) | ... -b :9000| ... -b :8000| @Reo-LEI |
 | 第6章 善用组合式的大文档(P177) 中间 | ... 311□s per loop|... 311µs per loop| @Silence-WWT|
 | 第6章 高可用方案(P180) | 复制（repliaction）|复制（replication）| @伟忠 |
 | 第12章 IPython交互模式(P338) 中间 | ... best of 3: 9.2 □s per loop| ... best of 3: 9.2 µs per loop| @Abirdcfly |
