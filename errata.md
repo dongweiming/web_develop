@@ -9,6 +9,7 @@
 | 第2章 autoenv(P24) 中间 | echo "source source /home/ubuntu..."| echo "source /home/ubuntu..."| @刘一鹤 |
 | 第3章 配置管理(P31) 尾部 | app.config.from_envar('SETTINGS') | app.config.from_envar('YOURAPPLICATION_SETTINGS')| @凝霜 |
 | 第3章 模板继承(P58) 尾部 | ... ${ title() } ... | ... ${ self.title() } ... | @MrCJJW |
+| 第3章 使用上下文(P77) 尾部 | ... 请求上下文与应用文 ... | ... 请求上下文与应用上下文... | @moling3650 |
 | 第5章 使用Ajax(P137) 尾部 | error = 'Password must be at least 5 ...'| error = 'Username must be at least 5 ...'| @特特特~ |
 | 第6章 Nginx配置 尾部 | root /home/ubuntu/web_develop/static;\n} | root /home/ubuntu/web_develop/static;| @伟忠 |
 | 第6章 通过Gunicorn启动Flask应用(P148) | ... -b :9000| ... -b :8000| @Reo-LEI |
