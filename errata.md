@@ -30,21 +30,44 @@
 
 1. 第4章 Flask-Migrate(P98) 尾部。出处 @凝霜
 
-原文:
+  原文:
 
-```
-db.init_app(app)
+  ```
+  db.init_app(app)
 
-migrate = Migrate(app, db)
-```
+  migrate = Migrate(app, db)
+  ```
 
-修改为:
+  修改为:
 
-```
-db.init_app(app)
-import users  # noqa
-migrate = Migrate(app, db)
-```
+  ```
+  db.init_app(app)
+  import users  # noqa
+  migrate = Migrate(app, db)
+  ```
+
+2. 第6章 实时统计（P166）中间。出处 @moling3650
+
+  原文:
+
+  ```
+  import radis
+
+  ACCOUNT_ACTIVE_KEY = 'account:active'
+
+  r.flushall() # 为了测试方便，每次启动后先清理Redis
+  ```
+
+  修改为：
+
+  ```
+  import radis
+
+  ACCOUNT_ACTIVE_KEY = 'account:active'
+
+  r = redis.StrictRedis(host='localhost', port=6379, db=0)
+  r.flushall() # 为了测试方便，每次启动后先清理Redis
+  ```
 
 ### 文件权限
 
