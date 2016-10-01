@@ -54,7 +54,7 @@
   原文:
 
   ```
-  import radis
+  import redis
 
   ACCOUNT_ACTIVE_KEY = 'account:active'
 
@@ -64,7 +64,7 @@
   修改为：
 
   ```
-  import radis
+  import redis
 
   ACCOUNT_ACTIVE_KEY = 'account:active'
 
