@@ -77,6 +77,26 @@
   r.flushall() # 为了测试方便，每次启动后先清理Redis
   ```
 
+3. 第3章 在Flask中使用SQLAlchemy（P72）中间。出处 @tntC4stl3
+
+  原文:
+
+    ```
+    class User(db.Model):
+        __tablename__ = 'users'
+        ...
+    ```
+
+  修改为：
+
+    ```
+    class User(db.Model):
+        __tablename__ = 'users2'
+        ...
+    ```
+
+    通过修改表名字避免 [Issue #15](https://github.com/dongweiming/web_develop/issues/15) 的错误
+
 ### 文件权限
 
 感谢 @ryanli1994指出，写的时候按照之前我的记忆的错误信息写了。 原文是：
