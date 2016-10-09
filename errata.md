@@ -12,6 +12,7 @@
 | 第3章 自定义URL转换器(P34) 中间 | ...join(BaseConverter.to_url(value) | ...join(super(BaseConverter, self).to_url(value)| @MrCJJW  |
 | 第3章 模板继承(P50) 头部 | ... 换成了 "Index" | ... 换成了 "Index  - My Webpage" | @志荣 |
 | 第3章 模板继承(P58) 尾部 | ... ${ title() } ... | ... ${ self.title() } ... | @MrCJJW |
+| 第3章 本地线程(P75) 头部 | ...chapter3/local.py | ...chapter3/section4/local.py | @tntC4stl3 |
 | 第3章 使用上下文(P77) 尾部 | ... 请求上下文与应用文 ... | ... 请求上下文与应用上下文... | @moling3650 |
 | 第3章 短链接页(P88) 尾部 | ...chapter3/section7/app.py | ...chapter3/section5/app.py | @志荣 |
 | 第5章 使用Ajax(P137) 尾部 | error = 'Password must be at least 5 ...'| error = 'Username must be at least 5 ...'| @特特特~ |
