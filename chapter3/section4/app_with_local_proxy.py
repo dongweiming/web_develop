@@ -12,7 +12,7 @@ db.init_app(app)
 
 
 def get_current_user():
-
+    print '1'
     users = User.query.all()
     return random.choice(users)
 
@@ -64,4 +64,4 @@ def user_view():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9000)
+    app.run(host='0.0.0.0', port=5000)
