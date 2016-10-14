@@ -104,8 +104,7 @@
 ```
 我们使用位运算做权限控制。位运算在Linux文件系统上就有体现，一个用户对文件或目录所拥有的权限分为三种："可读（1）"、"可写（2）"和"可执行（4）"，它们之间可以任意组合：有可读和可写权限就用3来表示（1
 + 2 = 3）；有可读和可执行权限就用5来表示（1 + 4 =
-5），三种权限全部拥有就用7表示（1 + 2 + 4 = 7）。为什么选择1、 2、
-4这样的有规律的数据呢？先看看下面的例子：
+5），三种权限全部拥有就用7表示（1 + 2 + 4 = 7）。为什么选择1、 2、4这样的有规律的数据呢？先看看下面的例子：
 ```
 
 我把可读和可执行记反了，应该是可读（4），可执行（1），修改为：
@@ -113,8 +112,7 @@
 ```
 我们使用位运算做权限控制。位运算在Linux文件系统上就有体现，一个用户对文件或目录所拥有的权限分为三种："可读（4）"、"可写（2）"和"可执行（1）"，它们之间可以任意组合：有可读和可写权限就用6来表示（4
 + 2 = 6）；有可读和可执行权限就用5来表示（4 + 1 =
-5），三种权限全部拥有就用7表示（1 + 2 + 4 = 7）。为什么选择1、 2、
-4这样的有规律的数据呢？先看看下面的例子：
+5），三种权限全部拥有就用7表示（1 + 2 + 4 = 7）。为什么选择1、 2、4这样的有规律的数据呢？先看看下面的例子：
 ```
 
 ### 正则匹配代理地址问题
@@ -151,4 +149,86 @@ PUT 用于完整的替换资源或者创建指定身份的资源，比如创建 
 PATCH 用于局部更新资源
     1. 完成请求后返回状态码 200 OK
     2. 完成请求后需要返回被修改的资源详细信息
-```                                                                                                                                                                                                                               ```
+```
+
+### 本书最大的错误
+
+感谢 @guyskk [Issue 20](https://github.com/dongweiming/web_develop/issues/20)反馈。我对LocalProxy的理解有问题，
+虽然在本书的例子中没有问题，但是使用的姿势是错误的。我们先复现下问题：
+
+首先给 chapter3/section4/app\_with\_local\_proxy.py 中的 get\_current\_user 函数加个调试信息：
+
+```
+def get_current_user():
+    print 'call'
+    users = User.query.all()
+    return random.choice(users)
+```
+
+接着进入IPython环境，执行如下命令：
+
+```
+❯ ipython
+In [1]: from app_with_local_proxy import *
+In [2]: ctx = app.test_request_context()
+In [3]: ctx.push()
+
+In [4]: current_user.name, current_user.name
+call
+call
+Out[4]: (u'admin', u'xiaoming')
+
+In [5]: current_user.name, current_user.name
+call
+call
+Out[5]: (u'dongwweiming', u'dongwweiming')
+
+In [6]: current_user.name, current_user.name
+call
+call
+Out[6]: (u'admin', u'xiaoming')
+```
+
+大家看到了吧，current\_user相当于每次都要从数据库里面取一次结果。
+
+我们分析下[源码](https://github.com/pallets/werkzeug/blob/master/werkzeug/local.py#L344)：
+
+```
+def __getattr__(self, name):
+    if name == '__members__':
+        return dir(self._get_current_object())
+    return getattr(self._get_current_object(), name)
+```
+
+每次调用current_user.XX都会触发\_\_getattr\_\_，而直接进行 _get_current_object 的执行，
+也就是都会执行了一次get\_current\_user。
+
+我以前以为单独用LocalProxy就可以了。其实还是得LocalProxy和LocalStack一起用：
+
+```
+from werkzeug.local import LocalStack, LocalProxy
+
+
+_user_stack = LocalStack()
+
+
+def get_current_user():
+    top = _user_stack.top
+    if top is None:
+        raise RuntimeError()
+    return top
+
+current_user = LocalProxy(get_current_user)
+
+
+@app.before_request
+def before_request():
+    users = User.query.all()
+    user = random.choice(users)
+    _user_stack.push(user)
+
+
+@app.teardown_appcontext
+def teardown(exc=None):
+    _user_stack.pop()
+```

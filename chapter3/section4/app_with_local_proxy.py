@@ -2,7 +2,7 @@
 import random
 
 from flask import Flask, render_template
-from werkzeug.local import LocalProxy
+from werkzeug.local import LocalStack, LocalProxy
 
 from ext import db
 from users import User
@@ -10,11 +10,15 @@ app = Flask(__name__, template_folder='../../templates')
 app.config.from_object('config')
 db.init_app(app)
 
+_user_stack = LocalStack()
+
 
 def get_current_user():
-    print '1'
-    users = User.query.all()
-    return random.choice(users)
+    top = _user_stack.top
+    if top is None:
+        raise RuntimeError()
+    return top
+
 
 current_user = LocalProxy(get_current_user)
 
@@ -32,6 +36,13 @@ def setup():
     db.session.commit()
 
 
+@app.before_request
+def before_request():
+    users = User.query.all()
+    user = random.choice(users)
+    _user_stack.push(user)
+
+
 @app.teardown_appcontext
 def teardown(exc=None):
     if exc is None:
@@ -39,7 +50,7 @@ def teardown(exc=None):
     else:
         db.session.rollback()
     db.session.remove()
-#    current_user = None
+    _user_stack.pop()
 
 
 @app.context_processor
@@ -64,4 +75,4 @@ def user_view():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=9000)
