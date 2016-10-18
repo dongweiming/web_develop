@@ -77,7 +77,7 @@
   r.flushall() # 为了测试方便，每次启动后先清理Redis
   ```
 
-3. 第3章 在Flask中使用SQLAlchemy（P72）中间。出处 @tntC4stl3
+3. 第3章 在Flask中使用SQLAlchemy（P71）中间。出处 @tntC4stl3
 
   原文:
 
@@ -96,6 +96,30 @@
     ```
 
     通过修改表名字避免 [Issue #15](https://github.com/dongweiming/web_develop/issues/15) 的错误
+
+4. 第3章 使用表达式（P66）尾部。出处 @tttimit
+
+  原文：
+
+    ```
+    if users.exists():
+        users.drop()
+
+    def execute(s):
+    ```
+
+  修改为：
+
+    ```
+    if users.exists():
+        users.drop()
+    users.create()  # 创建表
+
+    def execute(s):
+    ```
+
+
+
 
 ### 文件权限
 
