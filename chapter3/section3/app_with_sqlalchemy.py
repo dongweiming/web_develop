@@ -13,7 +13,7 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/users', methods=['POST'])
+@app.route('/users/', methods=['POST'])
 def users():
     username = request.form.get('name')
 
