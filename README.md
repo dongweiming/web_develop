@@ -8,7 +8,7 @@
 2. [亚马逊](https://www.amazon.cn/Python-Web%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98-%E8%91%A3%E4%BC%9F%E6%98%8E/dp/B01L8NVIC6)
 3. [China-pub](http://product.china-pub.com/4976972)
 
-PS: 目前京东自营无货，推荐去亚马逊或者[京东蓝墨水图书专营店](http://item.jd.com/10568355726.html)购买。
+由于每次重印次数较少，上述渠道可能无货，也推荐[京东蓝墨水图书专营店](http://item.jd.com/10568355726.html)或者其他图书专营店购买。
 
 ### 重要提示
 
