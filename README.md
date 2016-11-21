@@ -17,6 +17,7 @@
     ```
     ❯ cd web_develop
     ❯ git pull --rebase origin master
+    Checking out
     ```
 
 2. fork的时候可以顺便点个star😂
