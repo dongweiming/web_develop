@@ -18,7 +18,8 @@
     ❯ cd web_develop
     ❯ git pull --rebase origin master
     Checking out
-    ```
+    testing again:wq!
+       ```
 
 2. fork的时候可以顺便点个star😂
 3. 如果使用Vagrant启动时，提示类似如下信息：
