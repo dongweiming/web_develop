@@ -114,7 +114,8 @@ class PasteFile(db.Model):
     @property
     def image_size(self):
         if self.is_image:
-            im = Image.open(self.path)
+            f = open(self.path, 'rb')
+            im = Image.open(f)
             return im.size
         return (0, 0)
 
@@ -125,9 +126,10 @@ class PasteFile(db.Model):
     @classmethod
     def rsize(cls, old_paste, weight, height):
         assert old_paste.is_image, TypeError('Unsupported Image Type.')
+        f = open(old_paste.path, 'rb')
+        im = Image.open(f)
 
-        img = cropresize2.crop_resize(
-            Image.open(old_paste.path), (int(weight), int(height)))
+        img = cropresize2.crop_resize(im, (int(weight), int(height)))
 
         rst = cls(old_paste.filename, old_paste.mimetype, 0)
         img.save(rst.path)
