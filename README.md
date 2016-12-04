@@ -7,10 +7,9 @@
 1. [京东](http://item.jd.com/11966737.html)
 2. [亚马逊](https://www.amazon.cn/Python-Web%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98-%E8%91%A3%E4%BC%9F%E6%98%8E/dp/B01L8NVIC6)
 3. [China-pub](http://product.china-pub.com/4976972)
+4. [当当](http://product.dangdang.com/24029839.html)
 
-由于每次重印次数较少，上述渠道可能无货，也推荐[京东蓝墨水图书专营店](http://item.jd.com/10568355726.html)或者其他图书专营店购买。
-
-### 重要提示
+### **重要提示**
 
 1. 进入虚拟机请首先更新下项目代码库：
 
@@ -37,3 +36,13 @@
 2. [勘误](./errata.md)
 3. [Python社区](http://python-cn.org)
 4. [Python之美](https://zhuanlan.zhihu.com/python-cn)
+
+### 本书大事记
+
+* 2016-11-10: 本书已经确定要输出到台湾了！
+* 2016-11-01: 本书三印2k册上市
+* 2016-10-10: 本书二印2k册上市
+* 2016-09-12: 本书上市，同一天首印3k册售罄
+* 2016-09-02: 开始预售
+* 2016-08-15: 写作完成
+* 2015-12-20: 开始写作

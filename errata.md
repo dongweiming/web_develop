@@ -26,6 +26,7 @@
 | 第12章 IPython交互模式(P338) 中间 | ... best of 3: 9.2 □s per loop| ... best of 3: 9.2 µs per loop| @Abirdcfly |
 | 第12章 常用的Magic函数(P341) 中间 | ... sys: 4 □s, total: 4 □s| ... sys: 4 µs, total: 4 µs| @Abirdcfly |
 | 第12章 常用的Magic函数(P341) 中间 | ... Wall time: 8.11 □s|... Wall time: 8.11 µs| @Abirdcfly |
+| 第12章 free(P360) 尾部| - buffers/cache表示可用内存 | + buffers/cache表示可用内存 | @hezhiming |
 | 第13章 使用Gevent(P394) 中间 | def get_random_proxy(cls): | def get_random(cls): | @志荣 |
 | 第13章 使用多进程(P401) 尾部| ... 29.7 □s per loop| ... 29.7 µs per loop| @伟忠 |
 | 第13章 使用多进程(P401) 尾部| ... 44.6 □s per loop| ... 44.6 µs per loop| @伟忠 |
