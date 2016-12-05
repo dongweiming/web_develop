@@ -33,6 +33,7 @@
 | 第13章 使用多进程(P402) 头部| ... 44.1 □s per loop| ... 44.1 µs per loop| @伟忠 |
 | 第13章 使用多进程(P402) 头部| ... 86.1 □s per loop| ... 86.1 µs per loop| @伟忠 |
 | 第14章 contextlib(P422) 尾部 | \_\_exit\_ | \_\_exit\_\_ | @伟忠 |
+| 第14章 使用CFFI(P444) 尾部| 1. ABI的in-line模式。ABI模式模式不需要... | 1. ABI的in-line模式。ABI模式不需要... | @志荣 |
 
 
 ### 代码错误
@@ -119,8 +120,53 @@
     def execute(s):
     ```
 
+5. 第10章 服务端实现（P295）中间。出处 @志荣
 
+  原文:
 
+  ```
+  @classmethod
+  def create_by_upload_file(cls, uploaded_file):
+      ...
+  return rst
+  ```
+
+  修改为:
+
+  ```
+  @classmethod
+  def create_by_upload_file(cls, uploaded_file):
+      ...
+      return rst
+  ```
+
+6. 第7章 应用部署Fabirc（P193）中间。出处 @志荣
+
+  原文:
+
+  ```
+  from fabric.api import run
+  ```
+
+  修改为:
+
+  ```
+  from fabric.api import run, local
+  ```
+
+7. 第11章 使用Mapreduce（P308）头部。出处 @志荣
+
+  原文:
+
+  ```
+  import import bz2
+  ```
+
+  修改为:
+
+  ```
+  import bz2
+  ```
 
 ### 文件权限
 
