@@ -33,6 +33,7 @@
 | 第13章 使用多进程(P402) 头部| ... 44.1 □s per loop| ... 44.1 µs per loop| @伟忠 |
 | 第13章 使用多进程(P402) 头部| ... 86.1 □s per loop| ... 86.1 µs per loop| @伟忠 |
 | 第14章 contextlib(P422) 尾部 | \_\_exit\_ | \_\_exit\_\_ | @伟忠 |
+| 第14章 collections(P428) 尾部| 快速计算的计时器工具 | 快速计算的计数器工具 | @ethan-funny |
 | 第14章 使用CFFI(P444) 尾部| 1. ABI的in-line模式。ABI模式模式不需要... | 1. ABI的in-line模式。ABI模式不需要... | @志荣 |
 
 
