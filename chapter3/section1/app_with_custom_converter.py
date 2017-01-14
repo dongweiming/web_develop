@@ -17,7 +17,7 @@ class ListConverter(BaseConverter):
         return value.split(self.separator)
 
     def to_url(self, values):
-        return self.separator.join(super(BaseConverter, self).to_url(value)
+        return self.separator.join(BaseConverter.to_url(self, value)
                                    for value in values)
 
 
