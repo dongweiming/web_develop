@@ -1,7 +1,7 @@
 # coding=utf-8
 import os
 
-from werkzeug import SharedDataMiddleware
+from werkzeug.wsgi import SharedDataMiddleware
 from flask import abort, Flask, request, jsonify, redirect, send_file
 
 from ext import db, mako, render_template
