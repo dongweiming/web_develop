@@ -20,6 +20,7 @@
 | 第5章 使用Ajax(P137) 尾部 | error = 'Password must be at least 5 ...'| error = 'Username must be at least 5 ...'| @特特特~ |
 | 第6章 Nginx配置 尾部 | root /home/ubuntu/web_develop/static;\n} | root /home/ubuntu/web_develop/static;| @伟忠 |
 | 第6章 通过Gunicorn启动Flask应用(P148) | ... -b :9000| ... -b :8000| @Reo-LEI |
+| 第6章 Libmc安装配置(P151)尾部 | ... 转移到写|  ... 转移到另| @zyt312074545 |
 | 第6章 善用组合式的大文档(P177) 中间 | ... 311□s per loop|... 311µs per loop| @Silence-WWT|
 | 第6章 高可用方案(P180) | 复制（repliaction）|复制（replication）| @伟忠 |
 | 第7章 配置Supervisor(P187) 中间 | \$CWD/etc/supervisord.conf | \$CWD/supervisord.conf | @伟忠 |
