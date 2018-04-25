@@ -10,7 +10,7 @@
 | 第2章 插件系统(P17) 头部 | 我们先安装pep-naming | 我们先安装pep8-naming | @tntC4stl3 |
 | 第2章 autoenv(P24) 中间 | echo "source source /home/ubuntu..."| echo "source /home/ubuntu..."| @刘一鹤 |
 | 第3章 配置管理(P31) 尾部 | app.config.from_envar('SETTINGS') | app.config.from_envar('YOURAPPLICATION_SETTINGS')| @凝霜 |
-| 第3章 自定义URL转换器(P34) 中间 | ...join(BaseConverter.to_url(value) | ...join(super(BaseConverter, self).to_url(value)| @MrCJJW  |
+| 第3章 自定义URL转换器(P34) 中间 | ...join(BaseConverter.to_url(value) | ...join(super(ListConverter, self).to_url(value)| @MrCJJW  |
 | 第3章 模板继承(P50) 头部 | ... 换成了 "Index" | ... 换成了 "Index  - My Webpage" | @志荣 |
 | 第3章 模板继承(P58) 尾部 | ... ${ title() } ... | ... ${ self.title() } ... | @MrCJJW |
 | 第3章 本地线程(P75) 头部 | ...chapter3/local.py | ...chapter3/section4/local.py | @tntC4stl3 |
