@@ -13,6 +13,7 @@ from flask_security.forms import LoginForm
 app = Flask(__name__, template_folder='../../templates')
 app.config.from_object('config')
 app.config['SECURITY_LOGIN_USER_TEMPLATE'] = 'chapter4/section2/login_user.html'  # noqa
+app.config['SECURITY_PASSWORD_SALT'] = 'salt'
 
 
 db = SQLAlchemy(app)
