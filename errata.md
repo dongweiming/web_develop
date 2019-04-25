@@ -126,7 +126,25 @@
     def execute(s):
     ```
 
-5. 第10章 服务端实现（P295）中间。出处 @志荣
+5. 第4章 密码加密（P123）中间。出处 @for-in
+
+  原文:
+
+  ```
+  @password.setter
+  def _set_password(self, plaintext):
+　    self._password = generate_password_hash(plaintext)
+  ```
+
+  修改为:
+
+  ```
+  @password.setter
+  def password(self, plaintext):
+      self._password = generate_password_hash(plaintext)
+  ```
+
+6. 第10章 服务端实现（P295）中间。出处 @志荣
 
   原文:
 
@@ -146,7 +164,7 @@
       return rst
   ```
 
-6. 第7章 应用部署Fabirc（P193）中间。出处 @志荣
+7. 第7章 应用部署Fabirc（P193）中间。出处 @志荣
 
   原文:
 
@@ -160,7 +178,7 @@
   from fabric.api import run, local
   ```
 
-7. 第11章 使用Mapreduce（P308）头部。出处 @志荣
+8. 第11章 使用Mapreduce（P308）头部。出处 @志荣
 
   原文:
 
