@@ -41,6 +41,7 @@ def download(filehash):
                      mimetype='application/octet-stream',
                      cache_timeout=ONE_MONTH,
                      as_attachment=True,
+                     # If using Python 3.5, remove the encode('utf-8')
                      attachment_filename=paste_file.filename.encode('utf-8'))
 
 
