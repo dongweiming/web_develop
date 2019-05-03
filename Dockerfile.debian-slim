@@ -1,0 +1,39 @@
+FROM debian:stretch-slim
+ENV TZ=America/Los_Angeles
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    git \
+    vim \
+    sudo \
+    locales \
+    procps \
+    zsh && \
+    rm -rf /var/lib/apt/*
+
+RUN \
+    ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    useradd -ms /usr/bin/zsh debian && \
+    echo "debian ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    echo "debian:debian" | chpasswd && \
+    echo "set number" >> /etc/vim/vimrc && \
+    sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen && \
+    locale-gen
+
+USER debian
+WORKDIR /home/debian
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+RUN \
+    git clone https://github.com/dongweiming/web_develop && \
+    wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh && \
+    echo "syntax on\nset number\nset noautoindent" > /home/debian/.vimrc && \
+    echo "set nocindent\nset nosmartindent\nset indentexpr=" >> /home/debian/.vimrc
+
+# image size: 204MB
+# docker exec to access container
+EXPOSE 9000 5000
