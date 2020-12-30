@@ -23,7 +23,7 @@
 | 第6章 通过Gunicorn启动Flask应用(P148) | ... -b :9000| ... -b :8000| @Reo-LEI |
 | 第6章 Libmc安装配置(P151)尾部 | ... 转移到写|  ... 转移到另| @zyt312074545 |
 | 第6章 善用组合式的大文档(P177) 中间 | ... 311□s per loop|... 311µs per loop| @Silence-WWT|
-| 第6章 高可用方案(P180) | 复制（repliaction）|复制（replication）| @伟忠 |
+| 第6章 高可用方案(P180) | 复制（replication）|复制（replication）| @伟忠 |
 | 第7章 配置Supervisor(P187) 中间 | \$CWD/etc/supervisord.conf | \$CWD/supervisord.conf | @伟忠 |
 | 第7章 Role和Galaxy 中间 | 比如之前看到的redis-3.8和redis-3.0 | 比如之前看到的redis-2.8和redis-3.0 | @志荣 |
 | 第12章 IPython交互模式(P338) 中间 | ... best of 3: 9.2 □s per loop| ... best of 3: 9.2 µs per loop| @Abirdcfly |
